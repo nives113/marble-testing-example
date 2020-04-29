@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTestScheduler } from 'jasmine-marbles';
 
 import { CharactersComponent } from './characters.component';
 import { By } from '@angular/platform-browser';
@@ -31,8 +32,12 @@ describe('CharactersComponent', () => {
   });
 
   it('should list all characters', () => {
-    console.log((component as any).characterService);
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('div.character')).length).toBeGreaterThan(0);
+    // The loading element should be visible
+    expect(fixture.debugElement.queryAll(By.css('div.loading'))).not.toBeNull();
+    fixture.detectChanges();
+    expect(fixture.debugElement.queryAll(By.css('div.character')).length).toEqual(1);
+    // The loading element should be hidden
+    expect(fixture.debugElement.queryAll(By.css('div.loading'))).toBeNull();
   });
 });
