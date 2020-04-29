@@ -32,12 +32,10 @@ describe('CharactersComponent', () => {
   });
 
   it('should list all characters', () => {
-    fixture.detectChanges();
-    // The loading element should be visible
-    expect(fixture.debugElement.queryAll(By.css('div.loading'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('div.loading'))).not.toBeNull();
+    getTestScheduler().flush();
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('div.character')).length).toEqual(1);
-    // The loading element should be hidden
-    expect(fixture.debugElement.queryAll(By.css('div.loading'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('div.loading'))).toBeNull();
   });
 });
