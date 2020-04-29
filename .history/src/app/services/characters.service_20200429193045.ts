@@ -9,6 +9,6 @@ export class CharactersService {
   constructor() { }
 
   getAll(): Observable<any> {
-    return ajax.getJSON(`/people`);
+    return ajax.getJSON(`/people/`);
   }
 }
